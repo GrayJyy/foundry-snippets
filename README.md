@@ -78,6 +78,7 @@ contract Name is Test {
 
 And more code snippets like `test`,`expect emit`,`expect revert`,`prank`,`deal`,`wrap`....
 
-If you have any questions, please let me know directly in the discussion board...
+If you have any questions, please let me know directly in the discussion board ---> https://github.com/GrayJyy/foundry-snippets
+
 
 Now,just enjoy it~~~
