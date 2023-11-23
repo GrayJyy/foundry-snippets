@@ -1,0 +1,277 @@
+{
+    // Place your snippets for solidity here. Each snippet is defined under a snippet name and has a prefix, body and
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+    // same ids are connected.
+    // Example:
+    // "Print to console": {
+    // 	"prefix": "log",
+    // 	"body": [
+    // 		"console.log('$1');",
+    // 		"$2"
+    // 	],
+    // 	"description": "Log output to console"
+    // }
+  
+    //helperConfig
+    "Create a HelperConfig": {
+      "prefix": "helper",
+      "body": [
+        "// SPDX-License-Identifier: MIT",
+        "pragma solidity ${1: 0.8.19};",
+        "",
+        "contract HelperConfig {",
+        "    struct NetworkConfig {",
+        "        ${2:uint256 name};",
+        "    }",
+        "",
+        "    uint256 public DEFAULT_ANVIL_PRIVATE_KEY = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80;",
+        "",
+        "    constructor() {}",
+        "}",
+        ""
+      ],
+      "description": "Creates a HelperConfig"
+    },
+    //Init
+    "Creates a boilerplate contract": {
+      "prefix": "init",
+      "body": [
+        "// SPDX-License-Identifier: MIT",
+        "pragma solidity ${1: 0.8.19};",
+        "",
+        "import {Test, console} from \"forge-std/Test.sol\";",
+        "import {Vm} from \"forge-std/Vm.sol\";",
+        "import {HelperConfig} from \"../../script/HelperConfig.s.sol\";",
+        "",
+        "contract ${2:Name} is Test {",
+        "    HelperConfig public helperConfig;",
+        "",
+        "    constructor() {}",
+        "    function setUp() external {}",
+        "}",
+        ""
+      ],
+      "description": "Creates an initial test contract"
+    },
+  
+    //Script
+    "Creates a boilerplate script contract": {
+      "prefix": "script",
+      "body": [
+        "// SPDX-License-Identifier: MIT",
+        "pragma solidity ${1: 0.8.19};",
+        "",
+        "import {Script} from \"forge-std/Script.sol\";",
+        "import {HelperConfig} from \"./HelperConfig.s.sol\";",
+        "",
+        "contract ${2:Name} is Script {",
+        "    // HelperConfig public helperConfig;",
+        "",
+        "    constructor() {}",
+        "",
+        "    function run()",
+        "        external",
+        "        returns (",
+        "            /**",
+        "             * (Contract contract)",
+        "             */",
+        "            HelperConfig helperConfig",
+        "        )",
+        "    {",
+        "        helperConfig = new HelperConfig();",
+        "",
+        "        vm.startBroadcast();",
+        "        // deploy your contract here...",
+        "        vm.stopBroadcast();",
+        "    }",
+        "}",
+        ""
+      ],
+      "description": "Creates an initial test contract"
+    },
+  
+    //Functions
+    "Create a Forge Test Function": {
+      "prefix": "test",
+      "body": [
+        "function test${1:Name}_Should${2:DoSomething}_When${3:SomethingHappens}() public {",
+        "    //setUp",
+        "    //execution",
+        "    //assert$0",
+        "}"
+      ],
+      "description": "Creates a Forge test function"
+    },
+  
+    "Create a Forge Setup Function": {
+      "prefix": "setUp",
+      "body": ["function setUp() external {$0}"],
+      "description": "Creates a Forge setUp function"
+    },
+  
+    // events
+    "Create an event": {
+      "prefix": "event",
+      "body": ["event ${1:Name}(${2:Params});"],
+      "description": "Creates a Solidity event"
+    },
+  
+    // events
+    "Emit event test": {
+      "prefix": "expect emit",
+      "body": [
+        "vm.expectEmit(${1:true}, ${2:true}, ${3:true},${4:true});",
+        "emit ${5:Name}(${6:Params});"
+      ],
+      "description": "Creates an event test"
+    },
+  
+    // Cheatcodes
+    "Prank": {
+      "prefix": "prank",
+      "body": ["vm.prank(${1:address});"],
+      "description": "Creates a prank"
+    },
+  
+    "Start Prank": {
+      "prefix": "start prank",
+      "body": ["vm.startPrank(${1:address});"],
+      "description": "Start a prank"
+    },
+  
+    "Stop Prank": {
+      "prefix": "stop prank",
+      "body": ["vm.stopPrank();"],
+      "description": "Stops a prank"
+    },
+  
+    "Deal": {
+      "prefix": "deal",
+      "body": ["vm.deal(${1:address},${2:amount});"],
+      "description": "Sets the balance of given an address to amount"
+    },
+  
+    "Expect Revert": {
+      "prefix": "expect revert",
+      "body": ["vm.expectRevert(${1:ContractName}.${2:ContractName}__${3:ErrorName}.selector);"],
+      "description": "Expects a revert"
+    },
+  
+    "Warp": {
+      "prefix": "warp",
+      "body": ["vm.warp(${1:uint256});"],
+      "description": "Set a block.timestamp"
+    },
+  
+    "Roll": {
+      "prefix": "roll",
+      "body": ["vm.roll(${1:uint256});"],
+      "description": "Set a block.number"
+    },
+  
+    "Fee": {
+      "prefix": "fee",
+      "body": ["vm.fee(${1:uint256});"],
+      "description": "Set a block.basefee"
+    },
+  
+    "Chain Id": {
+      "prefix": "chain id",
+      "body": ["vm.chainId(${1:uint256});"],
+      "description": "Set a block.chainid"
+    },
+  
+    "Store Value": {
+      "prefix": "store",
+      "body": ["vm.store(${1:address}, ${2:bytes32}, ${3:bytes32});"],
+      "description": "Set a value in the storage of a contract in given slot"
+    },
+  
+    "Load Value": {
+      "prefix": "load",
+      "body": ["vm.load(${1:address}, ${2:bytes32});"],
+      "description": "Load a value from the storage of a contract in given slot"
+    },
+  
+    "Etch": {
+      "prefix": "etch",
+      "body": ["vm.etch(${1:address}, ${2:bytes});"],
+      "description": "Sets the bytecode of an given address to code"
+    },
+  
+    "Record": {
+      "prefix": "record",
+      "body": ["vm.record();"],
+      "description": "Records the reads and writes of the storage of the contract"
+    },
+  
+    "Access": {
+      "prefix": "accesses",
+      "body": ["vm.accesses(${1:address});"],
+      "description": "Returns the number of accesses of the storage of the contract"
+    },
+  
+    "Set Nonce": {
+      "prefix": "setNonce",
+      "body": ["vm.setNonce(${1:address}, ${2:uint64});"],
+      "description": "Sets the nonce of an given address"
+    },
+  
+    "Get Nonce": {
+      "prefix": "getNonce",
+      "body": ["vm.getNonce(${1:address});"],
+      "description": "Returns the nonce of an given address"
+    },
+  
+    "Mock Call": {
+      "prefix": "mockCall",
+      "body": ["vm.mockCall(${1:address}, ${2:bytes}, ${3:bytes});"],
+      "description": "Mocks a call to an given address"
+    },
+  
+    "Mock Call With Value": {
+      "prefix": "mockCallWithValue",
+      "body": [
+        "vm.mockCallWithValue(${1:address}, ${2:uint256}, ${3:bytes}, ${4:bytes});"
+      ],
+      "description": "Mocks a call to an given address with value"
+    },
+  
+    "Clear Mocked Calls": {
+      "prefix": "clearMockedCalls",
+      "body": ["vm.clearMockedCalls();"],
+      "description": "Clears all the mocked calls"
+    },
+  
+    "Set Coinbase": {
+      "prefix": "setCoinbase",
+      "body": ["vm.setCoinbase(${1:address});"],
+      "description": "Sets the coinbase for theblock"
+    },
+  
+    "Assume": {
+      "prefix": "assume",
+      "body": ["vm.assume(${1:condition});"],
+      "description": "Assumes a given condition is true"
+    },
+  
+    "Get address": {
+      "prefix": "addr",
+      "body": ["vm.addr(${1:privateKey});"],
+      "description": "Get Public Address of given a private Key"
+    },
+  
+    "Sign a Message": {
+      "prefix": "sign",
+      "body": ["vm.sign(${1:privateKey}, ${2:digest});"],
+      "description": "Signs a digest digest with private key privateKey, returning (v, r, s)"
+    },
+  
+    "Label": {
+      "prefix": "label",
+      "body": ["vm.label(${1:address}, ${2:string});"],
+      "description": "set label for the address"
+    }
+  }
+  
