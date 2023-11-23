@@ -37,21 +37,52 @@ contract Name is Script {
 
 >When you need to create a helperConfig sol to configure your params
 
-enter the `helper` and you will get a template like this:
+enter the `helper` and you will get a template like this(be sure you have set the .env file):
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity  0.8.19;
+pragma solidity 0.8.19;
 
-contract HelperConfig {
+import {Script} from "forge-std/Script.sol";
+
+contract HelperConfig is Script {
+    error HelperConfig__ChainIdNotSupported();
+
     struct NetworkConfig {
-        uint256 name;
+        uint256 deployerKey;
     }
 
     uint256 public DEFAULT_ANVIL_PRIVATE_KEY = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80;
+    NetworkConfig public activeNetworkConfig;
 
-    constructor() {}
+    constructor() {
+        if (block.chainid == 31337) {
+            activeNetworkConfig = getOrCreateAnvilNetworkConfig();
+        } else if (block.chainid == 11155111) {
+            activeNetworkConfig = getSepoliaNetworkConfig();
+        } else {
+            revert HelperConfig__ChainIdNotSupported();
+        }
+    }
+
+    function getOrCreateAnvilNetworkConfig() internal returns (NetworkConfig memory _anvilNetworkConfig) {
+        // Check to see if we set an active network config
+        if (activeNetworkConfig.deployerKey == DEFAULT_ANVIL_PRIVATE_KEY) {
+            return activeNetworkConfig;
+        }
+
+        vm.startBroadcast();
+        // deploy the mocks...
+        vm.stopBroadcast();
+
+        _anvilNetworkConfig = NetworkConfig({deployerKey: DEFAULT_ANVIL_PRIVATE_KEY});
+    }
+
+    function getSepoliaNetworkConfig() internal view returns (NetworkConfig memory _sepoliaNotworkConfig) {
+        _sepoliaNotworkConfig = NetworkConfig({deployerKey: vm.envUint("PRIVATE_KEY")});
+    }
 }
+
 
 ```
 
