@@ -187,6 +187,13 @@
       "body": ["vm.expectRevert(${1:ContractName}.${2:ContractName}__${3:ErrorName}.selector);"],
       "description": "Expects a revert"
     },
+    "Custom Expect Revert": {
+      "prefix": "cus expect revert",
+      "body": [
+        "vm.expectRevert(abi.encodeWithSelector(${1:ContractName}.${2:ContractName}__${3:ErrorName}.selector, ${4:Params}));"
+      ],
+      "description": "Expects a custom revert wich params"
+    },
   
     "Warp": {
       "prefix": "warp",
@@ -302,6 +309,13 @@
       "prefix": "label",
       "body": ["vm.label(${1:address}, ${2:string});"],
       "description": "set label for the address"
+    },
+    "assertEq": {
+      "prefix": "eq",
+      "body": [
+        " assertEq(${1:leftValue}, ${2:rightValue});"
+      ],
+      "description": "assertEq"
     }
   }
   
