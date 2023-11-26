@@ -184,13 +184,13 @@
   
     "Expect Revert": {
       "prefix": "expect revert",
-      "body": ["vm.expectRevert(${1:ContractName}.${2:ContractName}__${3:ErrorName}.selector);"],
+      "body": ["vm.expectRevert(${1:ContractName}.${2:ContractName__ErrorName}.selector);"],
       "description": "Expects a revert"
     },
     "Custom Expect Revert": {
       "prefix": "cus expect revert",
       "body": [
-        "vm.expectRevert(abi.encodeWithSelector(${1:ContractName}.${2:ContractName}__${3:ErrorName}.selector, ${4:Params}));"
+        "vm.expectRevert(abi.encodeWithSelector(${1:ContractName}.${2:ContractName__ErrorName}.selector, ${4:Params}));"
       ],
       "description": "Expects a custom revert wich params"
     },
