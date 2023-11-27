@@ -2,6 +2,31 @@
 
 >When you need to create a script sol to deploy your contract
 
+## New Feature
+<details>
+<summary>v1.0.6</summary>
+
+You can use `Getter test` to create a getter test:
+```solidity
+    function testGetterName_ShouldGetsCorrectly_WhenItConfigured() public {
+        // left value
+        // right value
+        assertEq(leftValue, rightValue);
+    }
+```
+</details>
+
+<details>
+<summary>v1.0.5</summary>
+
+You can use `cus expect revert` to create a revert expect with params:
+```solidity
+    vm.expectRevert(abi.encodeWithSelector(ContractName.ContractName__ErrorName.selector, Params));
+```
+</details>
+
+---
+
 enter the `script` and your will get a template like this:
 
 ```solidity
