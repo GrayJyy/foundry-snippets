@@ -133,7 +133,18 @@
       ],
       "description": "Creates a Forge test function"
     },
-  
+    "Create a Getter test": {
+      "prefix": "Getter test",
+      "body": [
+        "    function test${1:GetterName}_ShouldGetsCorrectly_WhenItConfigured() public {",
+        "        ${2:// left value}",
+        "        ${3:// right value}",
+        "        assertEq(${4:leftValue}, ${5:rightValue});",
+        "    }"
+      ],
+      "description": "Creates a Forge test function for a getter"
+    },
+
     "Create a Forge Setup Function": {
       "prefix": "setUp",
       "body": ["function setUp() external {$0}"],
